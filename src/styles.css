@@ -1,0 +1,21 @@
+@import "bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Poppins:wght@400;700&display=swap');
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background-color: black;
+  color: white;
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #575757;
+  border-radius: 10px;
+}

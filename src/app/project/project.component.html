@@ -1,0 +1,72 @@
+<div class="dropdown" id="dropdown">
+  <button class="btn btn-dark dropdown-toggle" type="button" id="filter" data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Filter by Skills
+  </button>
+  <div class="dropdown-menu" aria-labelledby="filter">
+    <div class="inner-menu">
+      <button class="dropdown-item" (click)="filter('HTML')"><img src="assets/images/skills/html.webp" alt="">HTML</button>
+      <button class="dropdown-item" (click)="filter('CSS')"><img src="assets/images/skills/css.png" alt="">CSS</button>
+      <button class="dropdown-item" (click)="filter('JavaScript')"><img src="assets/images/skills/javascript.png" alt="">JavaScript</button>
+      <button class="dropdown-item" (click)="filter('TypeScript')"><img src="assets/images/skills/typescript.png" alt="">TypeScript</button>
+      <button class="dropdown-item" (click)="filter('Angular')"><img src="assets/images/skills/angular.png" alt="">Angular</button>
+      <button class="dropdown-item" (click)="filter('Bootstrap')"><img src="assets/images/skills/bootstrap.png" alt="">Bootstrap</button>
+      <div class="dropdown-divider"></div>
+      <button class="dropdown-item" (click)="filter('Java')"><img src="assets/images/skills/java.webp" alt="">Java</button>
+      <button class="dropdown-item" (click)="filter('Python')"><img src="assets/images/skills/python.png" alt="">Python</button>
+      <button class="dropdown-item" (click)="filter('Node.js')"><img src="assets/images/skills/nodejs.png" alt="">Node.js</button>
+      <button class="dropdown-item" (click)="filter('C/C++')"><img src="assets/images/skills/c.png" alt="">C/C++</button>
+      <button class="dropdown-item" (click)="filter('Firebase')"><img src="assets/images/skills/firebase.png" alt="">Firebase</button>
+      <button class="dropdown-item" (click)="filter('MySQL')"><img src="assets/images/skills/mysql.webp" alt="">MySQL</button>
+      <div class="dropdown-divider"></div>
+      <button class="dropdown-item" (click)="filter('Electron.js')"><img src="assets/images/skills/electronjs.png" alt="">Electron.js</button>
+    </div>
+  </div>
+</div>
+<button id="btn-reset" class="btn btn-danger" type="reset" (click)="resetFilter()">Reset filters</button>
+<div class="projects" *ngFor="let project of filteredProjects">
+    <ng-container *ngIf="project.id % 2 == 0; else odd">
+      <div class="project container">
+          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 row-cols-xl-2">
+            <div class="col-4 project-image">
+              <img src="assets/images/projects/{{ project.img }}" alt="Project preview">
+            </div>
+            <div class="col-8 project-info">
+              <h1>{{ project.title }}</h1>
+              <div class="tags">
+                <button class="tag" *ngFor="let tag of project.tags" (click)="filter(tag)">{{ tag }}</button>
+              </div>
+              <p>{{ project.description }}</p>
+              <div class="links row row-cols-5">
+                <div class="link col" *ngFor="let link of project.links">
+                  <a href="{{ link.url }}" target="_blank"><img src="assets/images/projects/linkIcons/{{ link.icon }}" alt="linkicon"><br>{{ link.name }}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </ng-container>
+    <ng-template #odd>
+      <div class="project container">
+          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 row-cols-xl-2">
+            <div class="col-8 project-info">
+              <h1>{{ project.title }}</h1>
+              <div class="tags">
+                <button class="tag" *ngFor="let tag of project.tags" (click)="filter(tag)">{{ tag }}</button>
+              </div>
+              <p>{{ project.description }}</p>
+              <div class="links row row-cols-5">
+                <div class="link col" *ngFor="let link of project.links">
+                  <a href="{{ link.url }}" target="_blank"><img src="assets/images/projects/linkIcons/{{ link.icon }}" alt="linkicon"><br>{{ link.name }}</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-4 project-image">
+              <img src="assets/images/projects/{{ project.img }}" alt="Project preview">
+            </div>
+          </div>
+      </div>
+    </ng-template>
+</div>
+<div id="no-projects">
+  <h1>Currently, there isn't any project with this language or framework :(</h1>
+</div>

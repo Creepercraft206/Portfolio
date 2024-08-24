@@ -1,0 +1,103 @@
+.dropdown-menu {
+  padding: 2px;
+  background-image: linear-gradient(70deg, #F0060B, #CC26D5, #7702FF);
+}
+
+.inner-menu {
+  background-color: black;
+  border-radius: 5px;
+}
+
+.dropdown-item {
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+}
+
+.dropdown-item img {
+  width: 20px;
+  margin-right: 10px;
+
+}
+
+.dropdown-item:hover {
+  background-color: rgb(55, 55, 55);
+}
+
+.dropdown-divider {
+  background-color: rgb(55, 55, 55);
+}
+
+#btn-reset, #dropdown {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.project {
+  margin-top: 20px;
+}
+
+.project-image {
+  position: relative;
+  border-radius: 10px;
+  padding: 10px;
+  background-image: linear-gradient(70deg, #F0060B, #CC26D5, #7702FF);
+  height: fit-content;
+}
+
+.project-image img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.project-info {
+  padding: 20px;
+}
+
+.project-info p {
+  width: max(80%, 300px);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+}
+
+.project-info .link {
+  text-align: center;
+  position: relative;
+  display: inline;
+}
+
+.project-info img {
+  width: 50px;
+}
+
+.project-info .link a {
+  color: white;
+  font-size: 18px;
+}
+
+.project-info .tag {
+  background-color: #7702FF;
+  width: fit-content;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+  margin: 5px 5px 5px 0;
+  cursor: pointer;
+  display: inline-block;
+  transition: 500ms;
+}
+
+.project-info .tag:hover {
+  background-color: #8822fd;
+}
+
+#no-projects {
+  padding: 50px 0;
+  display: none;
+  font-size: 1.5em;
+  text-align: center;
+}
