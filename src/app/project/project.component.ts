@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {NgForOf, NgIf} from "@angular/common";
+import { Component, OnInit } from '@angular/core';
+import { NgForOf, NgIf } from "@angular/common";
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 @Component({
@@ -25,8 +25,8 @@ export class ProjectComponent implements OnInit {
       tags: ["Angular", "TypeScript", "Bootstrap", "HTML", "CSS"],
       img: "portfolio.png",
       links: [
-        { name: "Website", url: "https://www.github.com", icon: "github.svg" },
-        { name: "Github", url: "https://www.github.com", icon: "github.svg" }
+        { name: "Website", url: "https://www.timbahlinger.de", icon: "website.svg" },
+        { name: "Github", url: "https://github.com/Creepercraft206/Portfolio", icon: "github.svg" }
       ]
     },
     {
@@ -38,8 +38,8 @@ export class ProjectComponent implements OnInit {
       tags: ["Angular", "Firebase", "Node.js", "TypeScript", "HTML", "CSS", "Electron.js"],
       img: "test.png",
       links: [
-        { name: "Website", url: "https://www.github.com", icon: "github.svg" },
-        { name: "Github", url: "https://www.github.com", icon: "github.svg" }
+        { name: "Website", url: "https://discord.timbahlinger.de", icon: "website.svg" },
+        { name: "Github", url: "https://github.com/Creepercraft206/Discord", icon: "github.svg" }
       ]
     },
     {
