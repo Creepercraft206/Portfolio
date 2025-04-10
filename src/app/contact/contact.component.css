@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@200..800&family=Poppins:wght@800&display=swap');
+
 main {
   position: fixed;
   top: 0;
@@ -8,6 +10,19 @@ main {
 
   background-color: black;
   text-align: center;
+
+  font-family: "Oxanium", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.icon-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  z-index: -1;
 }
 
 #blob {
@@ -22,11 +37,15 @@ main {
 
 h1 {
   background: -webkit-linear-gradient(70deg, #F0060B, #CC26D5, #7702FF);
-  font-weight: bold;
+  font-family: "Poppins", serif;
+  font-weight: 800;
+  font-style: normal;
   font-size: 70px;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin: 50px 0;
+  -webkit-text-stroke: 1px black;
+  line-height: 100px;
 }
 
 p {
@@ -39,6 +58,12 @@ p {
   width: fit-content;
   left: 50%;
   transform: translateX(-50%);
+  margin-bottom: 50px;
+}
+
+.col {
+  display: flex;
+  justify-content: center;
 }
 
 a {
@@ -54,6 +79,11 @@ a {
   background-color: rgba(22,22,22,0.5);
   transition: 500ms;
   overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.contact.transparent-border {
+  border-color: transparent;
 }
 
 .contact img {
@@ -113,4 +143,24 @@ a {
     scale: 21;
     border-radius: 0;
   }
+}
+
+.legal {
+  padding: 8px 16px;
+  background-color: rgba(22,22,22,0.5);
+  border-radius: 5px;
+  border: 3px solid rgb(22,22,22);
+  width: fit-content;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.legal a {
+  color: #d3d3d3;
+  margin: 0 5px;
+}
+
+.legal a:hover {
+  text-decoration: underline;
 }

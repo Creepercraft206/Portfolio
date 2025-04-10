@@ -1,14 +1,14 @@
-import {Injectable, NgZone} from '@angular/core';
+import { Injectable, NgZone, OnDestroy } from '@angular/core';
 import * as THREE from "three";
-import {LinearSRGBColorSpace} from "three";
-import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader.js";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import * as GSAP from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ThreeService {
+export class ThreeService implements OnDestroy {
 
   private renderer!: THREE.WebGLRenderer;
   private camera!: THREE.PerspectiveCamera;
@@ -18,54 +18,161 @@ export class ThreeService {
 
   private canvas!: HTMLCanvasElement;
 
-  constructor(private ngZone: NgZone) {}
+  constructor(private ngZone: NgZone) {
+    GSAP.gsap.registerPlugin(ScrollTrigger);
+  }
 
   public init(canvas: HTMLCanvasElement): void {
     this.canvas = canvas;
-    this.renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+    this.renderer = new THREE.WebGLRenderer({
+      canvas,
+      antialias: true,
+      alpha: true,
+      powerPreference: "high-performance"
+    });
     this.renderer.setSize(window.innerWidth, window.innerHeight);
-    this.renderer.setPixelRatio(window.devicePixelRatio);
-    this.renderer.outputColorSpace = LinearSRGBColorSpace;
-
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    this.renderer.outputColorSpace = THREE.SRGBColorSpace;
+    this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    this.renderer.toneMappingExposure = 1.5;
+    this.renderer.shadowMap.enabled = true;
+    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
     this.scene = new THREE.Scene();
-    const texture = new THREE.TextureLoader().load('assets/background.jpg');
-    this.scene.background = texture;
+    this.scene.background = null;
 
-    this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    this.camera.position.z = 4;
-    this.camera.position.y = -0.5;
+    // Adjusted camera settings
+    this.camera = new THREE.PerspectiveCamera(
+      45, // Reduced FOV for less distortion
+      window.innerWidth / window.innerHeight,
+      0.1,
+      10000 // Increased far plane
+    );
+    this.camera.position.z = 500; // Adjusted camera distance
+    this.camera.position.y = 100;
+    this.camera.lookAt(0, 0, 0);
 
-    GSAP.gsap.registerPlugin(ScrollTrigger);
+    // Adjusted lighting
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
+    this.scene.add(ambientLight);
 
-    this.gsapAnimations();
-    this.loadModel();
-    this.createLight();
+    const pointLight1 = new THREE.PointLight(0xffffff, 2);
+    pointLight1.position.set(200, 200, 200);
+    this.scene.add(pointLight1);
+
+    const pointLight2 = new THREE.PointLight(0xffffff, 2);
+    pointLight2.position.set(-200, -200, -200);
+    this.scene.add(pointLight2);
+
+    this.loadModel(); // Call loadModel without passing data, as the path is hardcoded
     this.animate();
+    this.gsapAnimations();
+
+    window.addEventListener('resize', () => {
+      this.camera.aspect = window.innerWidth / window.innerHeight;
+      this.camera.updateProjectionMatrix();
+      this.renderer.setSize(window.innerWidth, window.innerHeight);
+    });
   }
 
   private loadModel(): void {
+    const dracoLoader = new DRACOLoader();
+    dracoLoader.setDecoderPath('/assets/models/draco/gltf/');
+    this.loader.setDRACOLoader(dracoLoader);
+
     this.loader.load(
-      'assets/models/blackhole/scene.gltf',
+      'assets/models/black_hole_gltf/scene.gltf',
       (gltf) => {
-        gltf.scene.rotation.x = Math.PI / -1.125;
-        gltf.scene.rotation.z = Math.PI / 1.05;
-        gltf.scene.name = "blackhole";
-        this.scene.add(gltf.scene);
+        const model = gltf.scene;
+        model.scale.set(0.1, 0.1, 0.1);
+        model.name = "blackhole";
+
+        // Center the model
+        const box = new THREE.Box3().setFromObject(model);
+        const center = box.getCenter(new THREE.Vector3());
+        model.position.sub(center);
+
+        model.traverse((child) => {
+          if (child instanceof THREE.Mesh) {
+            const material = child.material as THREE.Material; // Type cast to THREE.Material
+
+            // Force materials to be transparent where needed
+            if (['black_hole_center', 'black_hole_distortion', 'black_hole_blackoutside'].includes(material.name)) {
+              material.transparent = true;
+            }
+
+            // Specific material handling based on GLTF file
+            switch (material.name) {
+              case 'black_hole_center':
+                (material as THREE.MeshStandardMaterial).opacity = 0.888;
+                (material as THREE.MeshStandardMaterial).color.setRGB(0, 0, 0);
+                material.transparent = true;
+                break;
+
+              case 'black_hole_distortion':
+                (material as THREE.MeshStandardMaterial).opacity = 0.25;
+                (material as THREE.MeshStandardMaterial).color.setRGB(0, 0, 0);
+                material.transparent = true;
+                break;
+
+              case 'black_hole_blackoutside':
+                material.transparent = true;
+                (material as THREE.MeshStandardMaterial).opacity = 1.0;
+                (material as THREE.MeshStandardMaterial).color.setRGB(0, 0, 0);
+                // Enable transmission
+                //(material as THREE.MeshStandardMaterial).transmission = 1.0;
+                break;
+
+              case 'black_hole_light1':
+                (material as THREE.MeshStandardMaterial).emissive.setRGB(1.0, 1.0, 1.0);
+                (material as THREE.MeshStandardMaterial).emissiveIntensity = 2.0;
+                break;
+
+              case 'black_hole_light2':
+                (material as THREE.MeshStandardMaterial).emissive.setRGB(0.6, 0.6, 0.6);
+                (material as THREE.MeshStandardMaterial).emissiveIntensity = 1.0;
+                break;
+
+              case 'black_hole_light3':
+                (material as THREE.MeshStandardMaterial).emissive.setRGB(0.2, 0.2, 0.2);
+                (material as THREE.MeshStandardMaterial).emissiveIntensity = 0.5;
+                break;
+            }
+
+            // Enable alpha blending for transparent materials
+            if (material.transparent) {
+              material.blending = THREE.NormalBlending;
+              material.depthWrite = false;
+            }
+
+            // Force all textures to update
+            for (const key in material) {
+              const value = (material as any)[key];
+              if (value && value.isTexture) {
+                value.needsUpdate = true;
+              }
+            }
+
+            material.needsUpdate = true;
+          }
+        });
+
+        this.scene.add(model);
+
+        // Log materials for debugging
+        model.traverse((child) => {
+          if (child instanceof THREE.Mesh) {
+            console.log('Material:', child.material.name, child.material);
+          }
+        });
       },
-      undefined,
+      (progress) => {
+        console.log('Loading progress:', (progress.loaded / progress.total * 100) + '%');
+      },
       (error) => {
         console.error('An error happened', error);
       }
     );
-  }
-
-  private createLight(): void {
-    const light = new THREE.DirectionalLight("white", 10.0);
-    //light.position.set(0, 0, -5);
-    light.rotation.x = Math.PI / -1.125;
-    light.rotation.z = Math.PI / 1.05;
-    //this.scene.add(light);
   }
 
   private animate = () => {
@@ -73,52 +180,25 @@ export class ThreeService {
 
     const model = this.scene.getObjectByName('blackhole');
     if (model) {
-      model.rotation.y -= 0.001;
+      model.rotation.z += 0.001; // Adjusted rotation axis and speed
     }
 
     this.renderer.render(this.scene, this.camera);
   };
 
   private gsapAnimations(): void {
-
     GSAP.gsap.to(this.camera.position, {
       z: 2,
       duration: 2,
       scrollTrigger: {
         trigger: this.canvas,
-        start: "top top",
-        end: "bottom top",
+        start: innerHeight * 10.2,
+        end: innerHeight * 10.4,
         scrub: true
       },
       onUpdate: () => {
         this.camera.updateProjectionMatrix();
       }
-    });
-    GSAP.gsap.to(this.camera.rotation, {
-      z: 0.5,
-      duration: 2,
-      scrollTrigger: {
-        trigger: this.canvas,
-        start: "top top",
-        end: "bottom top",
-        scrub: true
-      },
-    });
-    GSAP.gsap.fromTo(this.camera.position, {
-      x: 0
-    }, {
-      x: 1,
-      duration: 5,
-      scrollTrigger: {
-        trigger: this.canvas,
-        start: "top top",
-        end: "bottom top",
-        scrub: true
-      },
-      onUpdate: () => {
-        this.camera.updateProjectionMatrix();
-      }
-
     });
   }
 
@@ -126,5 +206,6 @@ export class ThreeService {
     if (this.frameId != null) {
       cancelAnimationFrame(this.frameId);
     }
+    this.renderer.dispose();
   }
 }

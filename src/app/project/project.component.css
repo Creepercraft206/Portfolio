@@ -17,7 +17,6 @@
 .dropdown-item img {
   width: 20px;
   margin-right: 10px;
-
 }
 
 .dropdown-item:hover {
@@ -42,11 +41,14 @@
   border-radius: 10px;
   padding: 10px;
   background-image: linear-gradient(70deg, #F0060B, #CC26D5, #7702FF);
-  height: fit-content;
+  height: 400px;
+  width: 400px;
 }
 
 .project-image img {
+  height: 100%;
   width: 100%;
+  object-fit: cover;
   border-radius: 5px;
 }
 
@@ -54,28 +56,53 @@
   padding: 20px;
 }
 
-.project-info p {
-  width: max(80%, 300px);
-}
-
 .row {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .project-info .link {
   text-align: center;
   position: relative;
-  display: inline;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+  border: 1px solid transparent;
 }
 
 .project-info img {
   width: 50px;
+  transition: 500ms;
 }
 
 .project-info .link a {
+  text-decoration: none;
+}
+
+.project-info .link a p {
   color: white;
-  font-size: 18px;
+  font-size: 15px;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: 500ms;
+  margin: 0;
+}
+
+.project-info .link:hover {
+  background-color: #161616;
+  border: 1px solid #232323;
+}
+
+.project-info .link:hover a p {
+  opacity: 1;
+  transform: translateY(-5px);
+}
+
+.project-info .link:hover img {
+  scale: 0.9;
+  transform: translateY(-10px);
 }
 
 .project-info .tag {

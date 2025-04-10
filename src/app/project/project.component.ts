@@ -19,8 +19,9 @@ export class ProjectComponent implements OnInit {
     {
       id: 0,
       title: "Portfolio",
-      description: "The current portfolio you are looking at. " +
-        "It is based on Angular and uses GSAP for the scrolling animations. " +
+      description:
+        "The current portfolio you are looking at. " +
+        "Made with Angular and GSAP for the scrolling animations. " +
         "I also used Bootstrap as CSS framework.",
       tags: ["Angular", "TypeScript", "Bootstrap", "HTML", "CSS"],
       img: "portfolio.png",
@@ -32,23 +33,38 @@ export class ProjectComponent implements OnInit {
     {
       id: 1,
       title: "Discord clone",
-      description: "A recreation of the popular chatapp Discord, made with Angular and Firebase. " +
+      description:
+        "A recreation of the popular chatapp Discord, made with Angular and Firebase. " +
         "You can chat with friends, create and edit servers and personalize your profile. " +
-        "I used Firebase for the Firestore database to store all the data in an encrypted way and the Authentication to login and register users.",
+        "I used Firebase for the Firestore database to store all the data in an encrypted way and the Authentication to login and register users." +
+        "Public GitHub Repository coming soon.",
       tags: ["Angular", "Firebase", "Node.js", "TypeScript", "HTML", "CSS", "Electron.js"],
-      img: "test.png",
+      img: "Discord.png",
       links: [
-        { name: "Website", url: "https://discord.timbahlinger.de", icon: "website.svg" },
-        { name: "Github", url: "https://github.com/Creepercraft206/Discord", icon: "github.svg" }
+        { name: "Website", url: "https://gfs-it.web.app", icon: "website.svg" },
+        //{ name: "Github", url: "https://github.com/Creepercraft206/Discord", icon: "github.svg" }
       ]
     },
     {
       id: 2,
+      title: "Vin-O-Log Parcel Logistic Services",
+      description:
+        "Vin-O-Log is a parcel service offering their customers unique options to ship their packages for a cheap price. " +
+        "I am currently reworking their website with a brand new design and a new customer interface with easy options to ship and order packages. ",
+      tags: ["Angular", "Node.js", "Python", "TypeScript", "Bootstrap", "HTML", "CSS"],
+      img: "vinolog.png",
+      links: [
+        { name: "Website", url: "https://vinolog.fr", icon: "website.svg" }
+      ]
+    },
+    {
+      id: 3,
       title: "CommandBinder",
-      description: "A Minecraft Spigot plugin that allows users to add commands to items. " +
+      description:
+        "A Minecraft Spigot plugin that allows users to add commands to items. " +
         "With lots of placeholders and custom commands to delay or repeat a command, you have lots of customization possibilities. " +
         "You can also add options if the item should be consumed or if a confirmation is needed. " +
-        "This Plugin is a recreation of the CommandBinder plugin from NeruxVace.de.",
+        "This Plugin is a recreation of the CommandBinder plugin from the PServer-Gamemode from NeruxVace.de.",
       tags: ["Java"],
       img: "commandbinder.png",
       links: [
@@ -57,11 +73,12 @@ export class ProjectComponent implements OnInit {
       ]
     },
     {
-      id: 3,
+      id: 4,
       title: "HG-Practice",
-      description: "I'm currently recoding most of the plugins from my old Minecraftserver HG-Practice.de. " +
-        "What i'm recreating are the 3 gamemodes HG, Damager and SoupFFA, " +
-        "a new GameAPI on which these modes are based on, a Lobbysystem and an Automessage-System.",
+      description:
+        "I'm currently recoding most of the plugins from my old Minecraftserver HG-Practice.de. " +
+        "I will release the recoded source of the 3 gamemodes HG, Damager and SoupFFA, " +
+        "a new GameAPI on which these modes are based on, a Lobbysystem and an Automessage-System when they are finished. ",
       tags: ["Java", "MySQL"],
       img: "hgpractice.png",
       links: [
@@ -71,7 +88,22 @@ export class ProjectComponent implements OnInit {
         { name: "GameAPI", url: "https://www.github.com", icon: "github.svg" },
         { name: "Lobbysystem", url: "https://www.github.com", icon: "github.svg" }
       ]
-    }
+    },
+    {
+      id: 5,
+      title: "HGLabor HeroFFA Stats",
+      description:
+        "My submission for the coding challenge of Noriskk. " +
+        "The goal was to design a stats website for the new Gamemode of their Minecraftserver HGLabor.de, " +
+        "using their API.",
+      tags: ["Angular", "Node.js", "TypeScript", "Bootstrap", "HTML", "CSS"],
+      img: "HGLaborStats.png",
+      links: [
+        { name: "Website", url: "https://hglabor.timbahlinger.de", icon: "website.svg" },
+        { name: "GitHub", url: "https://github.com/Creepercraft206/HGLabor_FFA_Stats", icon: "github.svg" },
+        { name: "Video", url: "https://youtu.be/fDFt_GqSctc?si=v52Qyq2JIUQKp607", icon: "video.svg" }
+      ]
+    },
   ];
 
   filteredProjects: any[] = [];
