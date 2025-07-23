@@ -107,6 +107,10 @@
   opacity: 0;
   display: none;
   top: 100vh;
+  background-color: rgba(22,22,22,0.5);
+  padding: 20px 50px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 15px;
 }
 
 .skills p {
@@ -120,7 +124,7 @@
   width: 150px;
   height: 100px;
   padding: 20px;
-  background-color: rgba(53, 53, 53, 0.3);
+  background-color: rgba(53, 53, 53, 0.5);
   border: 3px solid rgb(53, 53, 53);
   border-radius: 10px;
   margin: 10px;
@@ -219,17 +223,53 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background: radial-gradient(ellipse at top, #273c55 0%, #090a0f 100%);
+  width: 100%;
+  background-color: #1d1d27;
+  background-image:
+    radial-gradient(circle, #4c4c4c 0.1em, transparent 0.1em),
+    linear-gradient(#273c55 .1em, transparent .1em),
+    linear-gradient(90deg, #273c55 .1em, transparent .1em);
+  background-size: 3em 3em, 3em 3em, 3em 3em;
+  background-position: 1.55em 1.55em, 0 0, 0 0;
   height: 100vh;
   overflow: hidden;
   position: relative;
+  animation: gridMove 4s linear infinite;
+}
+
+@keyframes gridMove {
+  0% {
+    background-position: 1.55em 1.55em, 0 0, 0 0;
+  }
+  100% {
+    background-position: 4.55em -1.45em, 3em -3em, 3em -3em;
+  }
+}
+
+.contact-wrapper {
+  background: radial-gradient(circle at top left,rgba(255,255,255,.3) 0,transparent 25%),
+              radial-gradient(circle at bottom right,rgba(255,255,255,.3) 0,transparent 25%),
+              rgba(191, 191, 191, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(5px);
+  padding: 40px 0;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0 15px 35px,
+              rgba(255, 255, 255, 0.5) 0 0 0 2px,
+              inset 0 0 20px 5px rgba(186, 186, 186, 0.5);
 }
 
 .contact h1 {
   text-align: center;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5),
+               0 0 20px rgba(255, 255, 255, 0.3),
+               0 0 30px rgba(255, 255, 255, 0.2);
 }
 .contact p {
   text-align: center;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5),
+  0 0 20px rgba(255, 255, 255, 0.3),
+  0 0 30px rgba(255, 255, 255, 0.2);
 }
 
 .contact .btn {
@@ -240,6 +280,7 @@
   transform: translateX(-50%);
   background-color: #7702FF;
   margin-top: 20px;
+  box-shadow: inset .2rem .2rem .5rem rgba(191, 191, 191, 0.2), inset -.2rem -.2rem .5rem #831ff8;
 }
 
 .contact .btn a {

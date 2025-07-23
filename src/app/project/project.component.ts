@@ -21,8 +21,7 @@ export class ProjectComponent implements OnInit {
       title: "Portfolio",
       description:
         "The current portfolio you are looking at. " +
-        "Made with Angular and GSAP for the scrolling animations. " +
-        "I also used Bootstrap as CSS framework.",
+        "Made with Angular as framework, GSAP for the scrolling animations and Bootstrap as CSS Framework. ",
       tags: ["Angular", "TypeScript", "Bootstrap", "HTML", "CSS"],
       img: "portfolio.png",
       links: [
@@ -32,17 +31,16 @@ export class ProjectComponent implements OnInit {
     },
     {
       id: 1,
-      title: "Discord clone",
+      title: "ChatApp",
       description:
         "A recreation of the popular chatapp Discord, made with Angular and Firebase. " +
-        "You can chat with friends, create and edit servers and personalize your profile. " +
-        "I used Firebase for the Firestore database to store all the data in an encrypted way and the Authentication to login and register users." +
-        "Public GitHub Repository coming soon.",
+        "Chat with friends, create and edit servers and personalize your profile. " +
+        "You can upload images and use markdown to format your messages. ",
       tags: ["Angular", "Firebase", "Node.js", "TypeScript", "HTML", "CSS", "Electron.js"],
       img: "Discord.png",
       links: [
-        { name: "Website", url: "https://gfs-it.web.app", icon: "website.svg" },
-        //{ name: "Github", url: "https://github.com/Creepercraft206/Discord", icon: "github.svg" }
+        { name: "Website", url: "https://chatapp.timbahlinger.de", icon: "website.svg" },
+        { name: "Github", url: "https://github.com/Creepercraft206/Chatapp", icon: "github.svg" }
       ]
     },
     {
@@ -50,20 +48,20 @@ export class ProjectComponent implements OnInit {
       title: "Vin-O-Log Parcel Logistic Services",
       description:
         "Vin-O-Log is a parcel service offering their customers unique options to ship their packages for a cheap price. " +
-        "I am currently reworking their website with a brand new design and a new customer interface with easy options to ship and order packages. ",
+        "I reworked their website with a brand new design and a new customer interface with easy options to ship and order packages. ",
       tags: ["Angular", "Node.js", "Python", "TypeScript", "Bootstrap", "HTML", "CSS"],
       img: "vinolog.png",
       links: [
-        { name: "Website", url: "https://vinolog.fr", icon: "website.svg" }
+        { name: "Website", url: "https://vinolog.at", icon: "website.svg" }
       ]
     },
     {
       id: 3,
       title: "CommandBinder",
       description:
-        "A Minecraft Spigot plugin that allows users to add commands to items. " +
-        "With lots of placeholders and custom commands to delay or repeat a command, you have lots of customization possibilities. " +
-        "You can also add options if the item should be consumed or if a confirmation is needed. " +
+        "CommandBinder is a Minecraft Spigot plugin which allows serverowners to create custom items with unique abilities. " +
+        "By binding commands from your favorite plugins to items, you can create a unique experience for your server. " +
+        "With lots of customization options, CommandBinder provides endless possibilities to create new things in-game. " +
         "This Plugin is a recreation of the CommandBinder plugin from the PServer-Gamemode from NeruxVace.de.",
       tags: ["Java"],
       img: "commandbinder.png",
@@ -74,21 +72,35 @@ export class ProjectComponent implements OnInit {
     },
     {
       id: 4,
-      title: "HG-Practice",
+      title: "BlockUI",
       description:
-        "I'm currently recoding most of the plugins from my old Minecraftserver HG-Practice.de. " +
-        "I will release the recoded source of the 3 gamemodes HG, Damager and SoupFFA, " +
-        "a new GameAPI on which these modes are based on, a Lobbysystem and an Automessage-System when they are finished. ",
-      tags: ["Java", "MySQL"],
-      img: "hgpractice.png",
+        "BlockUI is a Web-component library based on Angular that allows you to create beautiful and customizable user interfaces. " +
+        "It includes components like file-inputs, modals, video players, custom code highlighting, math expression rendering and much more." +
+        "It is designed to be easy to use and customize with CSS variables. More components are already in planing.",
+      tags: ["Angular", "TypeScript", "HTML", "CSS"],
+      img: "BlockUI.svg",
       links: [
-        { name: "HG", url: "https://www.github.com", icon: "github.svg" },
-        { name: "Damager", url: "https://www.github.com", icon: "github.svg" },
-        { name: "SoupFFA", url: "https://www.github.com", icon: "github.svg" },
-        { name: "GameAPI", url: "https://www.github.com", icon: "github.svg" },
-        { name: "Lobbysystem", url: "https://www.github.com", icon: "github.svg" }
+        { name: "NPM", url: "https://www.npmjs.com/package/blockui-components", icon: "npm.svg" },
+        { name: "Github", url: "https://github.com/Creepercraft206/block-ui", icon: "github.svg" }
       ]
     },
+    // {
+    //   id: 5,
+    //   title: "HG-Practice",
+    //   description:
+    //     "I'm currently recoding most of the plugins from my old Minecraftserver HG-Practice.de. " +
+    //     "I will release the recoded source of the 3 gamemodes HG, Damager and SoupFFA, " +
+    //     "a new GameAPI on which these modes are based on, a Lobbysystem and an Automessage-System when they are finished. ",
+    //   tags: ["Java", "MySQL"],
+    //   img: "hgpractice.png",
+    //   links: [
+    //     { name: "HG", url: "https://www.github.com", icon: "github.svg" },
+    //     { name: "Damager", url: "https://www.github.com", icon: "github.svg" },
+    //     { name: "SoupFFA", url: "https://www.github.com", icon: "github.svg" },
+    //     { name: "GameAPI", url: "https://www.github.com", icon: "github.svg" },
+    //     { name: "Lobbysystem", url: "https://www.github.com", icon: "github.svg" }
+    //   ]
+    // },
     {
       id: 5,
       title: "HGLabor HeroFFA Stats",

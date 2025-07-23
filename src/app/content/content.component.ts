@@ -1,25 +1,53 @@
 import {Component, OnInit} from '@angular/core';
-import { NgTemplateOutlet } from "@angular/common";
+import {NgIf, NgTemplateOutlet} from "@angular/common";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
 import gsap from "gsap";
 import {ProjectComponent} from "../project/project.component";
 import {CanvasComponent} from "../canvas/canvas.component";
+import {ContactComponent} from "../contact/contact.component";
+import {ImprintComponent} from "../imprint/imprint.component";
+import {ModalService} from "../modal.service";
+import {PrivacyComponent} from "../privacy/privacy.component";
 
 @Component({
   selector: 'app-content',
   standalone: true,
   imports: [
     ProjectComponent,
-    CanvasComponent
+    ImprintComponent,
+    NgIf,
+    PrivacyComponent
   ],
   templateUrl: './content.component.html',
   styleUrl: './content.component.css'
 })
 export class ContentComponent implements OnInit {
 
-  constructor() {}
+  constructor(private modalService: ModalService) {}
+
+  age: number = 19;
+
+  imprintModalOpen: boolean = false;
+  openImprintModal(): void {
+    this.imprintModalOpen = true;
+    this.modalService.imprintModalOpen.emit(true);
+  }
+
+  privacyModalOpen: boolean = false;
+  openPrivacyModal(): void {
+    this.privacyModalOpen = true;
+    this.modalService.privacyModalOpen.emit(true);
+  }
 
   ngOnInit(): void {
+    const birthDate = new Date("2006-04-12");
+    const today = new Date();
+    if (today.getMonth() >= birthDate.getMonth() && today.getDate() >= birthDate.getDate()) {
+      this.age = today.getFullYear() - birthDate.getFullYear();
+    } else {
+      this.age = today.getFullYear() - birthDate.getFullYear() - 1;
+    }
+
     // Text
     const text = document.getElementById("professions") as HTMLSpanElement;
     const professions = ["Fullstack Developer", "Java Developer", "UX/UI Designer", "Web Developer", "OOP Developer", "Problemsolver", "Minecraft Developer"];
@@ -45,6 +73,17 @@ export class ContentComponent implements OnInit {
     this.setFooterTime();
 
     this.gsapAnimations();
+
+    document.addEventListener("mousemove", (event) => {
+      this.moveContactWrapper(event);
+    });
+
+    this.modalService.imprintModalOpen.subscribe((isOpen: boolean) => {
+      this.imprintModalOpen = isOpen;
+    });
+    this.modalService.privacyModalOpen.subscribe((isOpen: boolean) => {
+      this.privacyModalOpen = isOpen;
+    });
   }
 
   gsapAnimations(): void {
@@ -251,6 +290,14 @@ export class ContentComponent implements OnInit {
         scrub: 1
       }
     });
+  }
+
+  moveContactWrapper(event: MouseEvent): void {
+    const contactWrapper = document.querySelector(".contact-wrapper") as HTMLDivElement;
+    // rotate the contact wrapper 3d based on mouse position
+    const x = (event.clientX / window.innerWidth - 0.5) * 35;
+    const y = (event.clientY / window.innerHeight - 0.5) * 35;
+    contactWrapper.style.transform = `rotateX(${y}deg) rotateY(${x}deg) perspective(1000px)`;
   }
 
   setFooterTime(): void {
