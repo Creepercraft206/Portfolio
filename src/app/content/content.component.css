@@ -159,15 +159,16 @@
 
 .skill img {
   height: 100%;
-  margin-top: 20px;
+  width: auto;
   transition: 200ms;
+  margin-top: 5px;
 }
 
 .skill h3 {
   color: white;
   font-size: 20px;
   position: relative;
-  margin-top: -20px;
+  margin: 5px 0 0 0;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -192,30 +193,91 @@
   padding-top: 50px;
 }
 
-
-.big-planet {
-  width: 150%;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 10vw;
-  border-bottom-left-radius: 90%;
-  border-bottom-right-radius: 90%;
-  background-color: black;
-  position: absolute;
-  box-shadow: 0 50px 40px 10px #7702FF;
-  animation: pulse 5s infinite;
-  z-index: 1000;
+.customers h1 {
+  margin-bottom: 20px;
 }
-@keyframes pulse {
-  0% {
-    box-shadow: 0 50px 50px 15px #7702FF;
-  }
-  50% {
-    box-shadow: 0 50px 40px 10px #7702FF;
-  }
-  100% {
-    box-shadow: 0 50px 50px 15px #7702FF;
-  }
+
+.customer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: rgba(39, 39, 39, 0.8);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  transition: 500ms;
+  height: 220px;
+}
+
+.customer .shine {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 20px;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.2);
+  filter: blur(10px);
+  transform: rotate(-20deg);
+  opacity: 0;
+}
+
+.customer:hover {
+  background-color: rgba(51, 51, 51, 0.7);
+}
+
+.customer:hover .shine {
+  transition: 700ms ease-in;
+  opacity: 1;
+  transform: translate(-100vw, 30%) rotate(-20deg);
+}
+
+.customer img {
+  max-width: 200px;
+  height: 120px;
+  object-fit: contain;
+}
+
+.customer h2 {
+  font-size: 20px;
+  text-align: center;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.7);
+  margin: 50px 0;
+}
+
+.current {
+  background-color: rgba(39, 39, 39, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 50px;
+}
+
+.current .col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 0 ;
+}
+
+.current img {
+  max-width: 200px;
+  height: auto;
+  filter: drop-shadow(2px 0 2px rgba(255, 255, 255, 0.6))
+          drop-shadow(-2px 0 2px rgba(255, 255, 255, 0.6))
+          drop-shadow(0 2px 2px rgba(255, 255, 255, 0.6))
+          drop-shadow(0 -2px 2px rgba(255, 255, 255, 0.6));
+}
+
+.current p {
+  text-align: center;
+  margin: 0;
 }
 
 .contact {
@@ -257,6 +319,12 @@
   box-shadow: rgba(0, 0, 0, 0.15) 0 15px 35px,
               rgba(255, 255, 255, 0.5) 0 0 0 2px,
               inset 0 0 20px 5px rgba(186, 186, 186, 0.5);
+  transition: 300ms;
+}
+
+.contact-wrapper:hover {
+  translate: 0 -10px;
+  scale: 1.02;
 }
 
 .contact h1 {
@@ -268,8 +336,8 @@
 .contact p {
   text-align: center;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.5),
-  0 0 20px rgba(255, 255, 255, 0.3),
-  0 0 30px rgba(255, 255, 255, 0.2);
+               0 0 20px rgba(255, 255, 255, 0.3),
+               0 0 30px rgba(255, 255, 255, 0.2);
 }
 
 .contact .btn {

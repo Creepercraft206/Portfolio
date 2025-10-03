@@ -49,7 +49,7 @@ export class ProjectComponent implements OnInit {
       description:
         "Vin-O-Log is a parcel service offering their customers unique options to ship their packages for a cheap price. " +
         "I reworked their website with a brand new design and a new customer interface with easy options to ship and order packages. ",
-      tags: ["Angular", "Node.js", "Python", "TypeScript", "Bootstrap", "HTML", "CSS"],
+      tags: ["Angular", "Node.js", "Python", "MySQL", "TypeScript", "Bootstrap", "HTML", "CSS"],
       img: "vinolog.png",
       links: [
         { name: "Website", url: "https://vinolog.at", icon: "website.svg" }
@@ -57,6 +57,19 @@ export class ProjectComponent implements OnInit {
     },
     {
       id: 3,
+      title: "MailBuilder",
+      description:
+        "MailBuilder is a software for companies to easily create E-Mail newsletters. " +
+        "By using components, like text, images, buttons and more through drag & drop, you can create a professional mail in minutes. " +
+        "The software is currently still in development but will be buyable for a one time fee. ",
+      tags: ["Angular", "MySQL", "Node.js", "TypeScript", "JavaScript", "HTML", "CSS", "Electron.js"],
+      img: "MailBuilder.svg",
+      links: [
+        { name: "Website", url: "https://mailbuilder.timbahlinger.de", icon: "website.svg" }
+      ]
+    },
+    {
+      id: 4,
       title: "CommandBinder",
       description:
         "CommandBinder is a Minecraft Spigot plugin which allows serverowners to create custom items with unique abilities. " +
@@ -71,7 +84,7 @@ export class ProjectComponent implements OnInit {
       ]
     },
     {
-      id: 4,
+      id: 5,
       title: "BlockUI",
       description:
         "BlockUI is a Web-component library based on Angular that allows you to create beautiful and customizable user interfaces. " +
@@ -84,25 +97,23 @@ export class ProjectComponent implements OnInit {
         { name: "Github", url: "https://github.com/Creepercraft206/block-ui", icon: "github.svg" }
       ]
     },
-    // {
-    //   id: 5,
-    //   title: "HG-Practice",
-    //   description:
-    //     "I'm currently recoding most of the plugins from my old Minecraftserver HG-Practice.de. " +
-    //     "I will release the recoded source of the 3 gamemodes HG, Damager and SoupFFA, " +
-    //     "a new GameAPI on which these modes are based on, a Lobbysystem and an Automessage-System when they are finished. ",
-    //   tags: ["Java", "MySQL"],
-    //   img: "hgpractice.png",
-    //   links: [
-    //     { name: "HG", url: "https://www.github.com", icon: "github.svg" },
-    //     { name: "Damager", url: "https://www.github.com", icon: "github.svg" },
-    //     { name: "SoupFFA", url: "https://www.github.com", icon: "github.svg" },
-    //     { name: "GameAPI", url: "https://www.github.com", icon: "github.svg" },
-    //     { name: "Lobbysystem", url: "https://www.github.com", icon: "github.svg" }
-    //   ]
-    // },
     {
-      id: 5,
+      id: 6,
+      title: "HG-Practice",
+      description:
+        "I'm currently recoding the gamemodes from my old Minecraftserver HG-Practice.de. " +
+        "I will release the recoded source of the 3 gamemodes HG, Damager and SoupFFA, " +
+        "a new GameAPI on which these modes are based on, a Lobbysystem and an Automessage-System when they are finished. " +
+        "Below are the links to the finished projects. ",
+      tags: ["Java", "MySQL"],
+      img: "hgpractice.png",
+      links: [
+        { name: "SoupFFA", url: "https://github.com/Creepercraft206/Soup-FFA", icon: "github.svg" },
+        { name: "GameAPI", url: "https://github.com/Creepercraft206/HGP-GameAPI", icon: "github.svg" }
+      ]
+    },
+    {
+      id: 7,
       title: "HGLabor HeroFFA Stats",
       description:
         "My submission for the coding challenge of Noriskk. " +

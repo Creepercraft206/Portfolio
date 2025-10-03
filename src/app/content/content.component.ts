@@ -1,10 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {NgIf, NgTemplateOutlet} from "@angular/common";
+import {NgIf, NgOptimizedImage} from "@angular/common";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
 import gsap from "gsap";
 import {ProjectComponent} from "../project/project.component";
-import {CanvasComponent} from "../canvas/canvas.component";
-import {ContactComponent} from "../contact/contact.component";
 import {ImprintComponent} from "../imprint/imprint.component";
 import {ModalService} from "../modal.service";
 import {PrivacyComponent} from "../privacy/privacy.component";
@@ -16,7 +14,8 @@ import {PrivacyComponent} from "../privacy/privacy.component";
     ProjectComponent,
     ImprintComponent,
     NgIf,
-    PrivacyComponent
+    PrivacyComponent,
+    NgOptimizedImage
   ],
   templateUrl: './content.component.html',
   styleUrl: './content.component.css'
@@ -42,7 +41,7 @@ export class ContentComponent implements OnInit {
   ngOnInit(): void {
     const birthDate = new Date("2006-04-12");
     const today = new Date();
-    if (today.getMonth() >= birthDate.getMonth() && today.getDate() >= birthDate.getDate()) {
+    if ((today.getMonth() == birthDate.getMonth() && today.getDate() >= birthDate.getDate()) || (today.getMonth() > birthDate.getMonth())) {
       this.age = today.getFullYear() - birthDate.getFullYear();
     } else {
       this.age = today.getFullYear() - birthDate.getFullYear() - 1;
