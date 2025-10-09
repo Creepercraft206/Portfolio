@@ -94,11 +94,6 @@ export class ContentComponent implements OnInit {
     };
     window.addEventListener('resize', updateScrollTrigger);
 
-    // Calculate responsive values based on viewport
-    const getResponsiveValue = (mobile: number, desktop: number) => {
-      return window.innerWidth <= 768 ? mobile : desktop;
-    };
-
     // Welcome section animations
     gsap.to("#squares", {
       rotate: 60,

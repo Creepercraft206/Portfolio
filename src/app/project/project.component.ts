@@ -61,11 +61,11 @@ export class ProjectComponent implements OnInit {
       description:
         "MailBuilder is a software for companies to easily create E-Mail newsletters. " +
         "By using components, like text, images, buttons and more through drag & drop, you can create a professional mail in minutes. " +
-        "The software is currently still in development but will be buyable for a one time fee. ",
+        "The software is currently still in development.",
       tags: ["Angular", "MySQL", "Node.js", "TypeScript", "JavaScript", "HTML", "CSS", "Electron.js"],
       img: "MailBuilder.svg",
       links: [
-        { name: "Website", url: "https://mailbuilder.timbahlinger.de", icon: "website.svg" }
+        // { name: "Website", url: "https://mailbuilder.timbahlinger.de", icon: "website.svg" }
       ]
     },
     {
